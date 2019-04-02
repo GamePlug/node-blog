@@ -25,6 +25,12 @@ async function start() {
     await nuxt.ready()
   }
 
+  // Add routes
+  const routes = require('./routes');
+  for (let i = 0; i < routes.length; i++) {
+    app.use(routes[i]);
+  }
+
   app.use(ctx => {
     ctx.status = 200
     ctx.respond = false // Bypass Koa's built-in response handling

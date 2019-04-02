@@ -1,5 +1,5 @@
 const pkg = require('./package')
-
+const blog = require('./blog')
 
 module.exports = {
   mode: 'universal',
@@ -15,7 +15,7 @@ module.exports = {
       { hid: 'description', name: 'description', content: pkg.description }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: blog.base + '/favicon.ico' }
     ]
   },
 
@@ -51,5 +51,14 @@ module.exports = {
     */
     extend(config, ctx) {
     }
+  },
+
+  server: {
+    host: blog.host, // default: localhost,
+    port: blog.port, // default: 3000
+  },
+
+  router: {
+    base: blog.base // default: '/'
   }
 }
