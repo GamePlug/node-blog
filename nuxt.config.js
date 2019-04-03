@@ -1,5 +1,5 @@
 const pkg = require('./package')
-const blog = require('./blog')
+const blog = require('./blog.config')
 
 module.exports = {
   mode: 'universal',

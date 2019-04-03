@@ -25,6 +25,17 @@ async function start() {
     await nuxt.ready()
   }
 
+  // Error catch
+  app.use(async (ctx, next) => {
+    try {
+      await next();
+    } catch (err) {
+      ctx.status = err.statusCode || err.status || 500;
+      ctx.body = err.stack
+      console.log(err.stack)
+    }
+  })
+
   // Add routes
   const routes = require('./routes');
   for (let i = 0; i < routes.length; i++) {
