@@ -8,7 +8,10 @@
     "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
     "build": "nuxt build",
     "start": "cross-env NODE_ENV=production node server/index.js",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "pm2start": "cross-env NODE_ENV=production pm2 start server/index.js --name blog --watch",
+    "pm2first": "npm run build && npm run pm2start",
+    "pm2again": "npm run build && pm2 delete blog && npm run pm2start"
   },
   "dependencies": {
     "cross-env": "^5.2.0",
