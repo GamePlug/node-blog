@@ -1,22 +1,22 @@
 const models = Object.assign(
   require('./user'),
-  require('./blog'),
-);
+  require('./blog')
+)
 
-const mongoose = require('mongoose');
-const blog = require('../../blog.config')
+const mongoose = require('mongoose')
+const config = require('../config')
 
 const options = {
   useNewUrlParser: true,
 }
 
-mongoose.connect(blog.mongodb, options).then(
+mongoose.connect(config.mongodb, options).then(
   () => {
     console.log("connected to mongoDB")
   },
   err => {
-    console.log(err.stack);
+    console.log(err.stack)
   }
-);
+)
 
-module.exports = models;
+module.exports = models

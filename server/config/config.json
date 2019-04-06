@@ -1,0 +1,12 @@
+{
+  "host": "localhost",
+  "port": 80,
+  "base": "/",
+  "mongodb": "mongodb://localhost:27017/blog",
+  "production": {
+    "base": "/pro"
+  },
+  "development": {
+    "base": "/dev"
+  }
+}

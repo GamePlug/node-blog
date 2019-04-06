@@ -28,18 +28,18 @@ async function start() {
   // Error catch
   app.use(async (ctx, next) => {
     try {
-      await next();
+      await next()
     } catch (err) {
-      ctx.status = err.statusCode || err.status || 500;
+      ctx.status = err.statusCode || err.status || 500
       ctx.body = err.stack
       console.log(err.stack)
     }
   })
 
   // Add routes
-  const routes = require('./routes');
+  const routes = require('./routes')
   for (let i = 0; i < routes.length; i++) {
-    app.use(routes[i]);
+    app.use(routes[i])
   }
 
   app.use(ctx => {
@@ -51,7 +51,7 @@ async function start() {
 
   app.listen(port, host)
   consola.ready({
-    message: `Server listening on http://${host}:${port}`,
+    message: `Server listening on http://${host}:${port}${config.router.base}`,
     badge: true
   })
 }

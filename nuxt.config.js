@@ -1,5 +1,5 @@
 const pkg = require('./package')
-const blog = require('./blog.config')
+const serverConfig = require('./server/config')
 
 module.exports = {
   mode: 'universal',
@@ -15,7 +15,7 @@ module.exports = {
       { hid: 'description', name: 'description', content: pkg.description }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: blog.base + '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: serverConfig.base + '/favicon.ico' }
     ]
   },
 
@@ -54,11 +54,11 @@ module.exports = {
   },
 
   server: {
-    host: blog.host, // default: localhost,
-    port: blog.port, // default: 3000
+    host: serverConfig.host, // default: localhost
+    port: serverConfig.port // default: 3000
   },
 
   router: {
-    base: blog.base // default: '/'
+    base: serverConfig.base // default: '/'
   }
 }
