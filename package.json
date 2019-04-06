@@ -9,16 +9,18 @@
     "build": "nuxt build",
     "start": "cross-env NODE_ENV=production node server/index.js",
     "generate": "nuxt generate",
-    "install": "cross-env NODE_ENV=production pm2 start server/index.js --name blog --watch",
-    "deploy": "npm run build && npm run install",
-    "redeploy": "npm run build && pm2 delete blog && npm run install"
+    "pm2start": "cross-env NODE_ENV=production pm2 start server/index.js --name blog --watch",
+    "pm2deploy": "npm run build && npm run pm2start",
+    "pm2redeploy": "npm run build && pm2 delete blog && npm run pm2start"
   },
   "dependencies": {
+    "@nuxtjs/markdownit": "^1.2.3",
     "cross-env": "^5.2.0",
-    "nuxt": "^2.4.0",
+    "github-markdown-css": "^3.0.1",
     "koa": "^2.6.2",
     "koa-router": "^7.4.0",
-    "mongoose": "^5.4.20"
+    "mongoose": "^5.4.20",
+    "nuxt": "^2.4.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.9"
