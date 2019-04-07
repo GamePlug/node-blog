@@ -14,6 +14,7 @@
     "pm2redeploy": "npm run build && pm2 delete blog && npm run pm2start"
   },
   "dependencies": {
+    "@nuxtjs/axios": "^5.4.1",
     "@nuxtjs/markdownit": "^1.2.3",
     "cross-env": "^5.2.0",
     "github-markdown-css": "^3.0.1",

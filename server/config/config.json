@@ -1,12 +1,13 @@
 {
   "host": "localhost",
   "port": 80,
-  "base": "/",
+  "serverBase": "",
+  "clientBase": "",
   "mongodb": "mongodb://localhost:27017/blog",
   "production": {
-    "base": "/pro/"
+    "clientBase": "/pro"
   },
   "development": {
-    "base": "/dev/"
+    "clientBase": "/dev"
   }
 }

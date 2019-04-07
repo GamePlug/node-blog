@@ -15,7 +15,7 @@ module.exports = {
       {hid: 'description', name: 'description', content: pkg.description}
     ],
     link: [
-      {rel: 'icon', type: 'image/x-icon', href: serverConfig.base + '/favicon.ico'}
+      {rel: 'icon', type: 'image/x-icon', href: serverConfig.clientBase + '/favicon.ico'}
     ]
   },
 
@@ -38,13 +38,8 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
-    '@nuxtjs/markdownit'
+    '@nuxtjs/axios', '@nuxtjs/markdownit'
   ],
-
-  /*
-  ** Markdownit module configuration
-   */
-  markdownit: require('./plugins/markdownit'),
 
   /*
   ** Build configuration
@@ -58,11 +53,51 @@ module.exports = {
   },
 
   server: {
-    host: serverConfig.host, // default: localhost
-    port: serverConfig.port // default: 3000
+    host: serverConfig.host,
+    port: serverConfig.port
   },
 
   router: {
-    base: serverConfig.base // default: '/'
+    base: serverConfig.clientBase
+  },
+
+  /*
+  ** Axios module configuration
+   */
+  axios: {
+    host: serverConfig.host,
+    port: serverConfig.port,
+    prefix: serverConfig.serverBase,
+    proxy: true
+  },
+
+  /*
+  ** Proxy module configurationxun
+   */
+  proxy: {
+    '/leichao/**': 'http://ileichao.com',
+    '/test/**': {
+      target: 'http://localhost:80',
+      changeOrigin: true,
+      pathRewrite: {'^/test': ''}
+    }
+  },
+
+  /*
+  ** Markdownit module configuration
+   */
+  markdownit: {
+    injected: true,
+    highlight: function (str, lang) {
+      const hljs = require('highlight.js')
+      if (lang && hljs.getLanguage(lang)) {
+        try {
+          return hljs.highlight(lang, str).value
+        } catch (__) {
+        }
+      }
+      return ''
+    }
   }
+
 }
