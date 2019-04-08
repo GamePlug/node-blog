@@ -2,8 +2,7 @@ const Router = require('koa-router')
 const models = require('../models')
 
 const router = new Router()
-
-router.prefix('/api/user')
+router.prefix('/user')
 
 // 你好
 router.get('/hello', async ctx => {

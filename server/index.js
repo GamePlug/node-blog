@@ -56,9 +56,9 @@ async function start() {
   // Add routes
   const routes = require('./routes')
   for (let i = 0; i < routes.length; i++) {
-    const route = routes[i]
-    route.prefix(serverConfig.serverBase)
-    app.use(route.routes())
+    const router = routes[i]
+    router.prefix(serverConfig.serverBase)
+    app.use(router.routes())
   }
 
   app.listen(port, host)
