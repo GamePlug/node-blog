@@ -9,15 +9,19 @@
   export default {
     data() {
       return {
-        data1: ''
+        model: ''
       }
     },
 
     asyncData({params, $axios}) {
-      return $axios.get(`test/api/blog/test`)
-        .then((res) => {
-          return {model: res.data.result}
-        })
+      return $axios.post('blog/test', {// http://localhost/test/api/blog/test
+        aaa: 'aaa',
+        bbb: 'bbb'
+      }).then((res) => {
+        return {model: res.data.result}
+      }).catch(function (error) {
+        console.log(error.stack);
+      })
     }
   }
 </script>

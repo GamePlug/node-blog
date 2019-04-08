@@ -1,7 +1,6 @@
 <template>
   <div>
-    博客列表
-    <nuxt-link to="blog">查看博客</nuxt-link>
+    管理首页
   </div>
 </template>
 

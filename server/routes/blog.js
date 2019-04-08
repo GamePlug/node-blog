@@ -2,7 +2,7 @@ const Router = require('koa-router')
 
 const router = new Router()
 
-router.prefix('/api/blog')
+//router.prefix('/api/blog')
 
 // 你好
 router.get('/hello', async ctx => {
@@ -10,8 +10,9 @@ router.get('/hello', async ctx => {
 })
 
 // 测试
-router.get('/test', async ctx => {
-  ctx.body = {err: 0, message: '你好啊blog', result: '@[toc](目录)\n' +
+router.all('/test', async ctx => {
+  const {aaa, bbb} = "GET" === ctx.request.method ? ctx.request.query : ctx.request.body
+  ctx.body = {err: 0, message: '你好啊blog', result: aaa + '' + bbb + '@[toc](目录)\n' +
       '\n' +
     'Markdown 语法简介\n' +
     '=============\n' +

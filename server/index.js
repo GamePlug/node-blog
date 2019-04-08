@@ -1,6 +1,8 @@
 const Koa = require('koa')
+const bodyparser = require('koa-bodyparser')
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
+const serverConfig = require('./config')
 
 const app = new Koa()
 
@@ -36,22 +38,32 @@ async function start() {
     }
   })
 
+  // Dispatch koa and nuxt
+  app.use(async (ctx, next) => {
+    if (ctx.request.url.startsWith(serverConfig.serverBase)) {
+      await next()
+    } else {
+      ctx.status = 200
+      ctx.respond = false // Bypass Koa's built-in response handling
+      ctx.req.ctx = ctx // This might be useful later on, e.g. in nuxtServerInit or with nuxt-stash
+      nuxt.render(ctx.req, ctx.res)
+    }
+  })
+
+  // Add bodyparser
+  app.use(bodyparser({enableTypes: ['json', 'form', 'text']}))
+
   // Add routes
   const routes = require('./routes')
   for (let i = 0; i < routes.length; i++) {
-    app.use(routes[i])
+    const route = routes[i]
+    route.prefix(serverConfig.serverBase)
+    app.use(route.routes())
   }
-
-  app.use(ctx => {
-    ctx.status = 200
-    ctx.respond = false // Bypass Koa's built-in response handling
-    ctx.req.ctx = ctx // This might be useful later on, e.g. in nuxtServerInit or with nuxt-stash
-    nuxt.render(ctx.req, ctx.res)
-  })
 
   app.listen(port, host)
   consola.ready({
-    message: `Server listening on http://${host}:${port}${config.router.base}`,
+    message: `Server listening on http://${host}:${port}${serverConfig.clientBase}`,
     badge: true
   })
 }
