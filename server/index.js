@@ -2,12 +2,12 @@ const Koa = require('koa')
 const bodyparser = require('koa-bodyparser')
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
-const serverConfig = require('./config')
+const myConfig = require('../config')
 
 const app = new Koa()
 
 // Import and Set Nuxt.js options
-let config = require('../nuxt.config.js')
+let config = require('../client/nuxt.config.js')
 config.dev = !(app.env === 'production')
 
 async function start() {
@@ -40,7 +40,7 @@ async function start() {
 
   // Dispatch koa and nuxt
   app.use(async (ctx, next) => {
-    if (ctx.request.url.startsWith(serverConfig.serverBase)) {
+    if (ctx.request.url.startsWith(myConfig.serverBase)) {
       await next()
     } else {
       ctx.status = 200
@@ -57,13 +57,13 @@ async function start() {
   const routes = require('./routes')
   for (let i = 0; i < routes.length; i++) {
     const router = routes[i]
-    router.prefix(serverConfig.serverBase)
+    router.prefix(myConfig.serverBase)
     app.use(router.routes())
   }
 
   app.listen(port, host)
   consola.ready({
-    message: `Server listening on http://${host}:${port}${serverConfig.clientBase}`,
+    message: `Server listening on http://${host}:${port}${myConfig.clientBase}`,
     badge: true
   })
 }

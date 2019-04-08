@@ -1,8 +1,9 @@
-const pkg = require('./package')
-const serverConfig = require('./server/config')
+const pkg = require('../package')
+const myConfig = require('../config')
 
 module.exports = {
   mode: 'universal',
+  srcDir: 'client/',
 
   /*
   ** Headers of the page
@@ -15,7 +16,7 @@ module.exports = {
       {hid: 'description', name: 'description', content: pkg.description}
     ],
     link: [
-      {rel: 'icon', type: 'image/x-icon', href: serverConfig.clientBase + '/favicon.ico'}
+      {rel: 'icon', type: 'image/x-icon', href: myConfig.clientBase + '/favicon.ico'}
     ]
   },
 
@@ -53,21 +54,21 @@ module.exports = {
   },
 
   server: {
-    host: serverConfig.host,
-    port: serverConfig.port
+    host: myConfig.host,
+    port: myConfig.port
   },
 
   router: {
-    base: serverConfig.clientBase
+    base: myConfig.clientBase
   },
 
   /*
   ** Axios module configuration
    */
   axios: {
-    host: serverConfig.host,
-    port: serverConfig.port,
-    prefix: serverConfig.serverBase,
+    host: myConfig.host,
+    port: myConfig.port,
+    prefix: myConfig.serverBase,
     proxy: true
   },
 
