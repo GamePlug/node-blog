@@ -31,16 +31,19 @@ async function start() {
   app.use(async (ctx, next) => {
     try {
       await next()
+      if (ctx.status === 404) {
+        ctx.throw(404);
+      }
     } catch (err) {
       ctx.status = err.statusCode || err.status || 500
-      ctx.body = err.stack
-      console.log(err.stack)
+      ctx.body = `Status:${ctx.status}\nUrl:${ctx.request.url}\n${err.stack}`
+      console.log(ctx.body)
     }
   })
 
   // Dispatch koa and nuxt
   app.use(async (ctx, next) => {
-    if (ctx.request.url.startsWith(myConfig.serverBase)) {
+    if (ctx.request.url.startsWith(`${myConfig.serverBase}/`)) {
       await next()
     } else {
       ctx.status = 200

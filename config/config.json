@@ -5,9 +5,7 @@
   "clientBase": "",
   "mongodb": "mongodb://localhost:27017/blog",
   "production": {
-    "clientBase": "/pro"
   },
   "development": {
-    "clientBase": "/dev"
   }
 }
