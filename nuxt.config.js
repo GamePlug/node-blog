@@ -1,5 +1,5 @@
-const pkg = require('../package')
-const myConfig = require('../config')
+const pkg = require('./package')
+const myConfig = require('./config')
 
 module.exports = {
   mode: 'universal',
