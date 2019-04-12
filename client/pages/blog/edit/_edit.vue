@@ -5,7 +5,11 @@
 </template>
 
 <script>
-  export default {}
+  export default {
+    head() {
+      return {title: '博客编辑'}
+    }
+  }
 </script>
 
 <style scoped>

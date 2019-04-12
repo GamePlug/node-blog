@@ -7,6 +7,10 @@
   import 'highlight.js/styles/default.css'
 
   export default {
+    head() {
+      return {title: '博客'}
+    },
+
     data() {
       return {
         model: ''
@@ -28,15 +32,15 @@
 
 <style scoped>
   .markdown-body {
-    max-width: 100%;
+    max-width: 1000px;
     padding: 8px 15px 25px 15px;
     margin: 0 auto;
     background: #ffffff;
   }
 
-  @media screen and (min-width: 719px) {
+  @media screen and (max-width: 768px) {
     .markdown-body {
-      max-width: 1100px;
+      max-width: 100%;
     }
   }
 </style>

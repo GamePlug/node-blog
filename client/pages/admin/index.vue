@@ -5,7 +5,11 @@
 </template>
 
 <script>
-  export default {}
+  export default {
+    head() {
+      return {title: '管理首页'}
+    }
+  }
 </script>
 
 <style scoped>

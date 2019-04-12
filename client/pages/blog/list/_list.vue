@@ -6,7 +6,11 @@
 </template>
 
 <script>
-  export default {}
+  export default {
+    head() {
+      return {title: '博客列表'}
+    }
+  }
 </script>
 
 <style scoped>

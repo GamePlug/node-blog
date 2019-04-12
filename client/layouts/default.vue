@@ -1,36 +1,45 @@
 <template>
   <div>
-    <div class="top" @click="toggleDrawer(false)">
-      <img class="top-menu" @click.stop="toggleDrawer" src="@/assets/images/icon_menu.png" width="32px" height="32px"/>
+    <div class="top">
+      <img class="top-menu" @click.stop="toggleDrawer" src="@/assets/images/icon_menu.png"/>
       <div class="top-content">
-        <div class="top-content-left">
+        <div class="top-content-left" @click="toggleDrawer(false)">
           <nuxt-link
             class="top-logo"
             to="/">
             <strong>雷超</strong>
           </nuxt-link>
         </div>
-        <div class="top-content-right">
+        <div class="top-content-right" @click="toggleDrawer(false)">
           <nuxt-link
             class="top-item"
-            :class="isActive(item.url) ? 'top-item-active' : ''"
-            v-for="item in menuData.items"
+            active-class="top-item-active"
+            v-for="item in topItems"
             :key="item.name"
+            :exact="item.url === '/'"
             :to="item.url">
             <span>{{ item.name }}</span>
           </nuxt-link>
         </div>
       </div>
     </div>
+
     <div class="content">
       <nuxt/>
     </div>
-    <Drawer placement="left" :closable="false" v-model="isDrawerOpen" :scrollable="true">
-      <p>Some contents...1</p>
-      <p>Some contents...2</p>
-      <p>Some contents...3</p>
-      <p>Some contents...4</p>
-      <p>Some contents...5</p>
+
+    <Drawer :style="{padding: 0}" placement="left" :closable="false" v-model="isDrawerOpen" :scrollable="true">
+      <div class="left-content" @click="toggleDrawer(false)">
+        <nuxt-link
+          class="left-item"
+          active-class="left-item-active"
+          v-for="item in leftItems"
+          :key="item.name"
+          :exact="item.url === '/'"
+          :to="item.url">
+          <span>{{ item.name }}</span>
+        </nuxt-link>
+      </div>
     </Drawer>
   </div>
 </template>
@@ -40,32 +49,24 @@
     data() {
       return {
         screenWidth: 0,
-        currentUrl: '/',
         isDrawerOpen: false,
-        menuData: {
-          logo: '',
-          name: '',
-          items: [
-            {name: '首页', url: '/'},
-            {name: '列表', url: '/blog/list/all'},
-            {name: 'Blog', url: '/blog/1001'},
-            {name: 'Edit', url: '/blog/edit'},
-          ]
-        }
+        topItems: [
+          {name: '首页', url: '/'},
+          {name: '博客', url: '/blog'},
+          {name: '关于', url: '/about'}
+        ],
+        leftItems: [
+          {name: '首页', url: '/'},
+          {name: '博客列表', url: '/blog/list'},
+          {name: 'Edit', url: '/blog/edit'}
+        ]
       }
     },
 
     methods: {
-      isActive(url) {
-        return this.currentUrl === url;
-      },
       toggleDrawer(to) {
         this.isDrawerOpen = typeof to === 'boolean' ? to : !this.isDrawerOpen
       }
-    },
-
-    created() {
-      this.currentUrl = this.$route.path
     },
 
     mounted() {
@@ -78,13 +79,10 @@
 
     watch: {
       screenWidth(newWidth, oldWidth) {
-        if (this.isDrawerOpen && newWidth > 719) {
+        if (this.isDrawerOpen && newWidth > 768) {
           this.toggleDrawer(false)
         }
       },
-      $route(to, from) {
-        this.currentUrl = to.path;
-      }
     }
   }
 </script>
@@ -97,7 +95,6 @@
     z-index: 1001;
     width: 100%;
     height: 55px;
-    padding: 0 12px;
     background-color: #ffffff;
     border-bottom: 1px solid #eeeeee;
     box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .08);
@@ -105,25 +102,35 @@
     align-items: center;
   }
 
+  .top-menu {
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+    margin-left: 4px;
+    display: none;
+  }
+
   .top-content {
     width: 100%;
     height: inherit;
-    line-height: 52px;
+    line-height: 53px;
   }
 
   .top-content-left {
     display: inline-block;
+    float: left;
+    margin-left: 20px;
   }
 
   .top-content-right {
     display: inline-block;
     float: right;
+    margin-right: 20px;
   }
 
   .top-logo {
     font-size: 20px;
     color: #333333;
-    margin-left: 10px;
   }
 
   .top-item {
@@ -144,8 +151,37 @@
     margin-top: 55px;
   }
 
-  @media screen and (min-width: 719px) {
+  .left-content {
+    width: 100%;
+    height: inherit;
+    line-height: 52px;
+  }
+
+  .left-item {
+    font-size: 16px;
+    color: #333333;
+    padding: 0 10px;
+    display: block;
+  }
+
+  .left-item-active {
+    color: #2d8cf0;
+    background: #f5f5f5;
+  }
+
+  >>> .ivu-drawer-body {
+    margin-top: 55px;
+    padding: 0;
+  }
+
+  @media screen and (max-width: 768px) {
     .top-menu {
+      display: block;
+    }
+  }
+
+  @media screen and (max-width: 384px) {
+    .top-content-right {
       display: none;
     }
   }
@@ -169,9 +205,5 @@
   *:after {
     box-sizing: border-box;
     margin: 0;
-  }
-
-  .ivu-drawer-body {
-    margin-top: 55px;
   }
 </style>
