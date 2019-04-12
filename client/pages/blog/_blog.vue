@@ -28,7 +28,15 @@
 
 <style scoped>
   .markdown-body {
-    width: 800px;
+    max-width: 100%;
+    padding: 8px 15px 25px 15px;
     margin: 0 auto;
+    background: #ffffff;
+  }
+
+  @media screen and (min-width: 719px) {
+    .markdown-body {
+      max-width: 1100px;
+    }
   }
 </style>

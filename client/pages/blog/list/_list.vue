@@ -1,7 +1,7 @@
 <template>
   <div>
     博客列表
-    <nuxt-link to="blog">查看博客</nuxt-link>
+    <nuxt-link to="/blog/1002">查看博客</nuxt-link>
   </div>
 </template>
 
