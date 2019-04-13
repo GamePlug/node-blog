@@ -4,20 +4,13 @@
       <img class="top-menu" @click.stop="toggleDrawer" src="@/assets/images/icon_menu.png"/>
       <div class="top-content">
         <div class="top-content-left" @click="toggleDrawer(false)">
-          <nuxt-link
-            class="top-logo"
-            to="/">
+          <nuxt-link class="top-logo" to="/">
             <strong>雷超</strong>
           </nuxt-link>
         </div>
         <div class="top-content-right" @click="toggleDrawer(false)">
-          <nuxt-link
-            class="top-item"
-            active-class="top-item-active"
-            v-for="item in topItems"
-            :key="item.name"
-            :exact="item.url === '/'"
-            :to="item.url">
+          <nuxt-link class="top-item" active-class="top-item-active" v-for="item in topItems"
+                     :key="item.name" :exact="item.url === '/'" :to="item.url">
             <span>{{ item.name }}</span>
           </nuxt-link>
         </div>
@@ -30,13 +23,8 @@
 
     <Drawer :style="{padding: 0}" placement="left" :closable="false" v-model="isDrawerOpen" :scrollable="true">
       <div class="left-content" @click="toggleDrawer(false)">
-        <nuxt-link
-          class="left-item"
-          active-class="left-item-active"
-          v-for="item in leftItems"
-          :key="item.name"
-          :exact="item.url === '/'"
-          :to="item.url">
+        <nuxt-link class="left-item" active-class="left-item-active" v-for="item in leftItems"
+                   :key="item.name" :exact="item.url === '/'" :to="item.url">
           <span>{{ item.name }}</span>
         </nuxt-link>
       </div>
@@ -108,12 +96,12 @@
     padding: 10px;
     margin-left: 4px;
     display: none;
+    cursor: pointer;
   }
 
   .top-content {
     width: 100%;
-    height: inherit;
-    line-height: 53px;
+    line-height: 54px;
   }
 
   .top-content-left {
@@ -153,14 +141,13 @@
 
   .left-content {
     width: 100%;
-    height: inherit;
-    line-height: 52px;
+    line-height: 50px;
   }
 
   .left-item {
     font-size: 16px;
     color: #333333;
-    padding: 0 10px;
+    padding: 0 15px;
     display: block;
   }
 
