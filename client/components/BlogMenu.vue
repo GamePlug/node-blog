@@ -1,32 +1,30 @@
 <template>
   <div>
     <div class="top">
-      <img class="top-menu" @click.stop="toggleDrawer" src="@/assets/images/icon_menu.png"/>
-      <div class="top-content">
-        <div class="top-content-left" @click="toggleDrawer(false)">
-          <nuxt-link class="top-logo" to="/">
-            <strong>雷超</strong>
-          </nuxt-link>
-        </div>
-        <div class="top-content-center">
-          <Menu theme="light" :active-name="activeName" mode="horizontal">
-            <Submenu v-for="menuItem in menuItems" :key="menuItem.name" :name="menuItem.name">
-              <template slot="title">
-                <Icon :type="menuItem.icon"/>
-                {{ menuItem.name }}
-              </template>
-              <MenuItem v-for="subItem in menuItem.subItems" :key="subItem.url" :name="subItem.url" :to="subItem.url">
-                {{ subItem.name }}
-              </MenuItem>
-            </Submenu>
-          </Menu>
-        </div>
-        <div class="top-content-right" @click="toggleDrawer(false)">
-          <nuxt-link class="top-item" active-class="top-item-active" v-for="item in topItems"
-                     :key="item.name" :exact="true" :to="item.url">
-            <span>{{ item.name }}</span>
-          </nuxt-link>
-        </div>
+      <div class="top-left" @click="toggleDrawer(false)">
+        <img class="top-left-menu" @click.stop="toggleDrawer" src="@/assets/images/icon_menu.png"/>
+        <nuxt-link class="top-left-logo" to="/">
+          <strong>雷超</strong>
+        </nuxt-link>
+      </div>
+      <div class="top-center">
+        <Menu theme="light" :active-name="activeName" mode="horizontal">
+          <Submenu v-for="menuItem in menuItems" :key="menuItem.name" :name="menuItem.name">
+            <template slot="title">
+              <Icon :type="menuItem.icon"/>
+              {{ menuItem.name }}
+            </template>
+            <MenuItem v-for="subItem in menuItem.subItems" :key="subItem.url" :name="subItem.url" :to="subItem.url">
+              {{ subItem.name }}
+            </MenuItem>
+          </Submenu>
+        </Menu>
+      </div>
+      <div class="top-right" @click="toggleDrawer(false)">
+        <nuxt-link class="top-right-item" active-class="top-right-item-active" v-for="item in topItems"
+                   :key="item.name" :exact="true" :to="item.url">
+          <span>{{ item.name }}</span>
+        </nuxt-link>
       </div>
     </div>
 
@@ -137,53 +135,48 @@
     z-index: 1001;
     width: 100%;
     height: var(--menu-bar-height);
+    line-height: calc(var(--menu-bar-height) - 2px);
     background-color: #ffffff;
     border-bottom: 1px solid #eeeeee;
     box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .08);
+    display: block;
+  }
+
+  .top-left {
+    float: left;
+    margin-left: 10px;
     display: flex;
     align-items: center;
   }
 
-  .top-menu {
+  .top-center {
+    float: left;
+    margin-left: 40px;
+    max-width: calc(100% - 270px);
+  }
+
+  .top-right {
+    float: right;
+    margin-right: 10px;
+  }
+
+  .top-left-menu {
+    float: left;
     width: 50px;
     height: 50px;
     padding: 10px;
-    margin-left: 4px;
     display: none;
     cursor: pointer;
   }
 
-  .top-content {
-    width: 100%;
-    line-height: var(--menu-bar-height);
-  }
-
-  .top-content-left {
-    display: inline-block;
-    float: left;
-    margin-left: 20px;
-  }
-
-  .top-content-center {
-    display: inline-block;
-    float: left;
-    margin-left: 40px;
-    height: var(--menu-bar-height);
-    max-width: calc(100% - 280px);
-  }
-
-  .top-content-right {
-    display: inline-block;
-    float: right;
-    margin-right: 20px;
-  }
-
-  .top-logo {
+  .top-left-logo {
     font-size: 20px;
     color: #333333;
+    display: inline-block;
+    margin-left: 10px;
   }
 
-  .top-item {
+  .top-right-item {
     font-size: 16px;
     color: #333333;
     padding: 0 5px;
@@ -192,14 +185,14 @@
     text-align: center;
   }
 
-  .top-item-active {
+  .top-right-item-active {
     color: #2d8cf0;
     border-bottom: 2px solid #2d8cf0;
   }
 
   >>> .ivu-menu-horizontal {
-    height: auto;
-    line-height: var(--menu-bar-height);
+    height: 100%;
+    line-height: calc(var(--menu-bar-height) - 2px);
   }
 
   >>> .ivu-menu-horizontal .ivu-menu-submenu {
@@ -220,17 +213,17 @@
   }
 
   @media screen and (max-width: 768px) {
-    .top-menu {
-      display: block;
+    .top-left-menu {
+      display: inline-block;
     }
 
-    .top-content-center {
+    .top-center {
       display: none;
     }
   }
 
   @media screen and (max-width: 384px) {
-    .top-content-right {
+    .top-right {
       display: none;
     }
   }
