@@ -6,6 +6,8 @@
 
 <script>
   export default {
+    layout: 'admin',
+
     head() {
       return {title: '管理首页'}
     }
