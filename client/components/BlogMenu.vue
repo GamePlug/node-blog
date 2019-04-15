@@ -1,14 +1,14 @@
 <template>
   <div>
     <div class="top blog-menu">
-      <div class="top-left" @click="toggleDrawer(false)">
+      <div class="top-left">
         <img class="top-left-menu" @click.stop="toggleDrawer" src="@/assets/images/icon_menu.png"/>
-        <nuxt-link class="top-left-logo" to="/">
+        <nuxt-link class="top-left-logo" to="/" @click.native="toggleDrawer(false)">
           <strong>雷超</strong>
         </nuxt-link>
       </div>
       <div class="top-center">
-        <Menu theme="light" :active-name="activeName" mode="horizontal">
+        <Menu theme="light" :active-name="activeName" mode="horizontal" @on-select="onMenuClick">
           <Submenu v-for="menuItem in menuItems" :key="menuItem.name" :name="menuItem.name">
             <template slot="title">
               <Icon :type="menuItem.icon"/>
@@ -20,8 +20,8 @@
           </Submenu>
         </Menu>
       </div>
-      <div class="top-right" @click="toggleDrawer(false)">
-        <Menu theme="light" :active-name="activeName" mode="horizontal">
+      <div class="top-right">
+        <Menu theme="light" :active-name="activeName" mode="horizontal" @on-select="onMenuClick">
           <MenuItem v-for="item in topItems" :key="item.url" :name="item.url" :to="item.url">
             {{ item.name }}
           </MenuItem>
@@ -98,7 +98,9 @@
         this.isDrawerOpen = typeof to === 'boolean' ? to : !this.isDrawerOpen
       },
       onMenuClick() {
-        this.toggleDrawer(false)
+        if (this.isDrawerOpen) {
+          this.toggleDrawer(false)
+        }
       }
     },
 
