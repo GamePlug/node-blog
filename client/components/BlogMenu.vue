@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="top">
+    <div class="top blog-menu">
       <div class="top-left" @click="toggleDrawer(false)">
         <img class="top-left-menu" @click.stop="toggleDrawer" src="@/assets/images/icon_menu.png"/>
         <nuxt-link class="top-left-logo" to="/">
@@ -21,14 +21,15 @@
         </Menu>
       </div>
       <div class="top-right" @click="toggleDrawer(false)">
-        <nuxt-link class="top-right-item" active-class="top-right-item-active" v-for="item in topItems"
-                   :key="item.name" :exact="true" :to="item.url">
-          <span>{{ item.name }}</span>
-        </nuxt-link>
+        <Menu theme="light" :active-name="activeName" mode="horizontal">
+          <MenuItem v-for="item in topItems" :key="item.url" :name="item.url" :to="item.url">
+            {{ item.name }}
+          </MenuItem>
+        </Menu>
       </div>
     </div>
 
-    <Drawer :style="{padding: 0}" placement="left" :closable="false" v-model="isDrawerOpen" :scrollable="true">
+    <Drawer class-name="blog-menu" placement="left" :closable="false" v-model="isDrawerOpen" :scrollable="true">
       <Menu theme="light" :active-name="activeName" @on-select="onMenuClick" width="auto" accordion>
         <Submenu v-for="menuItem in menuItems" :key="menuItem.name" :name="menuItem.name">
           <template slot="title">
@@ -41,6 +42,8 @@
         </Submenu>
       </Menu>
     </Drawer>
+
+    <BackTop/>
   </div>
 </template>
 
@@ -136,29 +139,30 @@
     width: 100%;
     height: var(--menu-bar-height);
     min-width: 300px;
-    line-height: calc(var(--menu-bar-height) - 2px);
+    line-height: var(--menu-bar-height);
     background-color: #ffffff;
-    border-bottom: 1px solid #eeeeee;
     box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .08);
-    display: block;
   }
 
   .top-left {
-    float: left;
-    margin-left: 10px;
+    position: absolute;
+    left: 0;
+    padding: 0 10px;
     display: flex;
     align-items: center;
   }
 
   .top-center {
-    float: left;
-    margin-left: 30px;
-    max-width: calc(100% - 260px);
+    position: absolute;
+    left: 100px;
   }
 
   .top-right {
-    float: right;
-    margin-right: 10px;
+    position: absolute;
+    right: 0;
+    padding: 0 10px;
+    background: #ffffff;
+    z-index: 901;
   }
 
   .top-left-menu {
@@ -173,50 +177,55 @@
   .top-left-logo {
     font-size: 20px;
     color: #333333;
-    display: inline-block;
+    display: inline;
     margin-left: 10px;
     margin-right: 10px;
   }
 
-  .top-right-item {
-    font-size: 16px;
-    color: #333333;
-    padding: 0 5px;
-    margin: 0 5px;
-    display: inline-block;
-    text-align: center;
+  >>> .blog-menu .ivu-menu-horizontal {
+    height: var(--menu-bar-height);
   }
 
-  .top-right-item-active {
-    color: #2d8cf0;
-    border-bottom: 2px solid #2d8cf0;
+  >>> .blog-menu .top-center .ivu-menu-horizontal {
+    width: 2000px;
   }
 
-  >>> .ivu-menu-horizontal {
-    height: 100%;
-    line-height: calc(var(--menu-bar-height) - 2px);
-  }
-
-  >>> .ivu-menu-horizontal .ivu-menu-submenu {
+  >>> .blog-menu .ivu-menu-horizontal .ivu-menu-submenu {
     padding: 0;
     margin: 0 5px;
   }
 
-  >>> .ivu-menu-vertical .ivu-menu-submenu.ivu-menu-item-active .ivu-menu-submenu-title {
+  >>> .blog-menu .ivu-menu-horizontal .ivu-menu-item {
+    padding: 0 5px;
+    margin: 0 5px;
+  }
+
+  >>> .blog-menu .ivu-menu-vertical .ivu-menu-submenu.ivu-menu-item-active .ivu-menu-submenu-title {
     color: #2d8cf0;
   }
 
-  >>> .ivu-menu-vertical .ivu-menu-item:hover, >>> .ivu-menu-vertical .ivu-menu-submenu-title:hover {
+  >>> .blog-menu .ivu-menu-horizontal .ivu-menu-item:not(.ivu-menu-item-active):hover {
+    color: inherit;
+    border-bottom: 2px solid transparent;
+  }
+
+  >>> .blog-menu .ivu-menu-vertical .ivu-menu-item:not(.ivu-menu-item-active):hover,
+  >>> .blog-menu .ivu-menu-vertical .ivu-menu-submenu-title:hover {
     color: inherit;
   }
 
-  >>> .ivu-drawer-body {
+  >>> .blog-menu .ivu-menu-horizontal.ivu-menu-light::after,
+  >>> .blog-menu .ivu-menu-vertical.ivu-menu-light::after {
+    display: none;
+  }
+
+  >>> .blog-menu .ivu-drawer-body {
     padding: var(--menu-bar-height) 0 0;
   }
 
   @media screen and (max-width: 768px) {
     .top-left-menu {
-      display: inline-block;
+      display: inline;
     }
 
     .top-center {
