@@ -37,10 +37,4 @@
     margin: 0 auto;
     background: #ffffff;
   }
-
-  @media screen and (max-width: 768px) {
-    .markdown-body {
-      max-width: 100%;
-    }
-  }
 </style>

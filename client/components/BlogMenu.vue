@@ -135,6 +135,7 @@
     z-index: 1001;
     width: 100%;
     height: var(--menu-bar-height);
+    min-width: 300px;
     line-height: calc(var(--menu-bar-height) - 2px);
     background-color: #ffffff;
     border-bottom: 1px solid #eeeeee;
@@ -151,8 +152,8 @@
 
   .top-center {
     float: left;
-    margin-left: 40px;
-    max-width: calc(100% - 270px);
+    margin-left: 30px;
+    max-width: calc(100% - 260px);
   }
 
   .top-right {
@@ -174,6 +175,7 @@
     color: #333333;
     display: inline-block;
     margin-left: 10px;
+    margin-right: 10px;
   }
 
   .top-right-item {
@@ -218,12 +220,6 @@
     }
 
     .top-center {
-      display: none;
-    }
-  }
-
-  @media screen and (max-width: 384px) {
-    .top-right {
       display: none;
     }
   }
