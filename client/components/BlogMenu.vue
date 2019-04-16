@@ -29,7 +29,7 @@
       </div>
     </div>
 
-    <Drawer class-name="blog-menu" placement="left" :closable="false" v-model="isDrawerOpen" :scrollable="true">
+    <Drawer class-name="blog-menu" placement="left" :closable="false" v-model="isDrawerOpen" scrollable>
       <Menu theme="light" :active-name="activeName" @on-select="onMenuClick" width="auto" accordion>
         <Submenu v-for="menuItem in menuItems" :key="menuItem.name" :name="menuItem.name">
           <template slot="title">
@@ -114,6 +114,10 @@
       window.onresize = function windowResize() {
         that.screenWidth = window.innerWidth
       }
+      // 当侧边栏打开时，阻止移动端页面滑动
+      document.body.addEventListener('touchmove', function (e) {
+        if (that.isDrawerOpen) e.preventDefault()
+      }, {passive: false})
     },
 
     watch: {
