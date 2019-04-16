@@ -57,6 +57,7 @@
         isDrawerOpen: false,
         currentUrl: '',
         activeName: '',
+        scrollTop: 0,
         topItems: [
           {name: '首页', url: '/'},
           {name: '博客', url: '/blog'},
@@ -114,10 +115,6 @@
       window.onresize = function windowResize() {
         that.screenWidth = window.innerWidth
       }
-      // 当侧边栏打开时，阻止移动端页面滑动
-      document.body.addEventListener('touchmove', function (e) {
-        if (that.isDrawerOpen) e.preventDefault()
-      }, {passive: false})
     },
 
     watch: {
@@ -131,6 +128,18 @@
       },
       currentUrl(newUrl, oldUrl) {
         this.activeName = newUrl
+      },
+      isDrawerOpen(newStatus, oldStatus) {
+        // 当侧边栏打开时，阻止页面滑动，兼容移动端
+        if (newStatus) {
+          this.scrollTop = document.body.scrollTop || document.documentElement.scrollTop
+          const style = "position: fixed; width: 100%; height: 100%; top: -" + this.scrollTop + "px"
+          document.body.setAttribute("style", style)
+        } else {
+          document.body.removeAttribute("style")
+          document.body.scrollTop = this.scrollTop
+          document.documentElement.scrollTop = this.scrollTop
+        }
       }
     }
   }
