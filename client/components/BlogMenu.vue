@@ -133,7 +133,7 @@
         // 当侧边栏打开时，阻止页面滑动，兼容移动端
         if (newStatus) {
           this.scrollTop = document.body.scrollTop || document.documentElement.scrollTop
-          const style = "position: fixed; width: 100%; height: 100%; top: -" + this.scrollTop + "px"
+          const style = `position: fixed; width: 100%; height: 100%; top: -${this.scrollTop}px`
           document.body.setAttribute("style", style)
         } else {
           document.body.removeAttribute("style")
@@ -213,6 +213,10 @@
   >>> .blog-menu .ivu-menu-horizontal .ivu-menu-item {
     padding: 0 5px;
     margin: 0 5px;
+  }
+
+  >>> .blog-menu .ivu-menu-vertical {
+    height: 100%;
   }
 
   >>> .blog-menu .ivu-menu-vertical .ivu-menu-submenu.ivu-menu-item-active .ivu-menu-submenu-title {

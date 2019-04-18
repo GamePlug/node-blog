@@ -17,6 +17,6 @@
 
 <style scoped>
   .content {
-    margin-top: var(--menu-bar-height);
+    padding-top: var(--menu-bar-height);
   }
 </style>
