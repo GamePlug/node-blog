@@ -1,5 +1,7 @@
 <template>
-  <div class="markdown-body" v-html="$md.render(model)"></div>
+  <div class="layout">
+    <div class="markdown-body" v-html="$md.render(model)"></div>
+  </div>
 </template>
 
 <script>
@@ -31,6 +33,10 @@
 </script>
 
 <style scoped>
+  .layout {
+    background: #f5f5f5;
+  }
+
   .markdown-body {
     max-width: 1000px;
     padding: 8px 15px 25px 15px;

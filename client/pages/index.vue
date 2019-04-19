@@ -1,18 +1,18 @@
 <template>
-  <div>
+  <div class="layout">
     <Row class-name="row" v-for="(colItems, index) in rowItems" :key="index">
       <Col v-for="(colItem, index) in colItems" :key="index" :span="24/colItems.length">
-        <div class="item" :class="itemClass(index, colItems.length)">
-          <div v-if="colItems.length === 1">
-            {{colItem.title}}大的
+        <nuxt-link :to="colItem.url">
+          <div v-if="colItems.length === 1" class="item" :class="itemClass(index, colItems.length)">
+            {{colItem.name}}
           </div>
-          <div v-else-if="colItems.length === 2">
-            {{colItem.title}}中的
+          <div v-else-if="colItems.length === 2" class="item" :class="itemClass(index, colItems.length)">
+            {{colItem.name}}
           </div>
-          <div v-else>
-            {{colItem.title}}小的
+          <div v-else class="item" :class="itemClass(index, colItems.length)">
+            {{colItem.name}}
           </div>
-        </div>
+        </nuxt-link>
       </Col>
     </Row>
   </div>
@@ -27,23 +27,25 @@
     data() {
       return {
         rowItems: [[
-          {title: '1'}, {title: '2'}
+          {name: '博客精品', url: '/blog'}, {name: '个人简历', url: '/about'}
         ], [
-          {title: '1'}, {title: '2'}, {title: '3'},
+          {name: '传说之地', url: '/user'}, {name: '后台管理', url: '/admin'}
         ], [
-          {title: '1'},
+          {name: '1', url: '/'}, {name: '2', url: '/'}, {name: '3', url: '/'},
         ], [
-          {title: '1'}, {title: '2'}
+          {name: '1', url: '/'},
         ], [
-          {title: '1'}, {title: '2'}
+          {name: '1', url: '/'}, {name: '2', url: '/'}
         ], [
-          {title: '1'}, {title: '2'}
+          {name: '1', url: '/'}, {name: '2', url: '/'}
         ], [
-          {title: '1'}, {title: '2'}
+          {name: '1', url: '/'}, {name: '2', url: '/'}
         ], [
-          {title: '1'}, {title: '2'}
+          {name: '1', url: '/'}, {name: '2', url: '/'}
         ], [
-          {title: '1'}, {title: '2'}
+          {name: '1', url: '/'}, {name: '2', url: '/'}
+        ], [
+          {name: '1', url: '/'}, {name: '2', url: '/'}
         ]]
       }
     },
@@ -67,6 +69,11 @@
 </script>
 
 <style scoped>
+  .layout {
+    padding: 1px 0;
+    background: #f5f5f5;
+  }
+
   .row {
     min-width: 300px;
     max-width: 1000px;
@@ -77,7 +84,14 @@
     height: 36vw;
     min-height: 60px;
     max-height: 200px;
-    background: #f5f5f5;
+    padding: 10px;
+    background: #ffffff;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .item:hover {
+    box-shadow: 0 0 5px rgba(0, 0, 0, .2);
   }
 
   .item-one {
@@ -98,5 +112,14 @@
   .item-right {
     margin-left: 5px;
     margin-right: 10px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .item:hover {
+      box-shadow: none;
+    }
+    .item:active {
+      box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+    }
   }
 </style>

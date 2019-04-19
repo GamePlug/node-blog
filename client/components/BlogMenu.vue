@@ -163,6 +163,8 @@
     position: absolute;
     left: 0;
     padding: 0 10px;
+    background: #ffffff;
+    z-index: 901;
     display: flex;
     align-items: center;
   }
@@ -170,6 +172,7 @@
   .top-center {
     position: absolute;
     left: 100px;
+    width: 2000px;
   }
 
   .top-right {
@@ -199,10 +202,6 @@
 
   >>> .blog-menu .ivu-menu-horizontal {
     height: var(--menu-bar-height);
-  }
-
-  >>> .blog-menu .top-center .ivu-menu-horizontal {
-    width: 2000px;
   }
 
   >>> .blog-menu .ivu-menu-horizontal .ivu-menu-submenu {
