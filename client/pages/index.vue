@@ -70,19 +70,17 @@
 
 <style scoped>
   .layout {
-    padding: 1px 0;
-    background: #f5f5f5;
+    max-width: 1000px;
+    margin: 0 auto;
   }
 
   .row {
-    min-width: 300px;
-    max-width: 1000px;
-    margin: 10px auto;
+    margin: 10px 0;
   }
 
   .item {
     height: 36vw;
-    min-height: 60px;
+    min-height: 100px;
     max-height: 200px;
     padding: 10px;
     background: #ffffff;

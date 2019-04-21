@@ -17,6 +17,9 @@
 
 <style scoped>
   .content {
-    padding-top: var(--menu-bar-height);
+    min-width: 280px;
+    min-height: 100vh;
+    padding: var(--menu-bar-height) 0 1px;
+    background: #f5f5f5;
   }
 </style>

@@ -34,13 +34,12 @@
 
 <style scoped>
   .layout {
-    background: #f5f5f5;
+    max-width: 1000px;
+    margin: 0 auto;
   }
 
   .markdown-body {
-    max-width: 1000px;
     padding: 8px 15px 25px 15px;
-    margin: 0 auto;
     background: #ffffff;
   }
 </style>

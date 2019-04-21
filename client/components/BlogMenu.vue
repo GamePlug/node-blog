@@ -102,6 +102,13 @@
         if (this.isDrawerOpen) {
           this.toggleDrawer(false)
         }
+      },
+      bodyStyle(position, width, height, top) {
+        const style = document.body.style
+        style.position = position
+        style.width = width
+        style.height = height
+        style.top = top
       }
     },
 
@@ -133,10 +140,9 @@
         // 当侧边栏打开时，阻止页面滑动，兼容移动端
         if (newStatus) {
           this.scrollTop = document.body.scrollTop || document.documentElement.scrollTop
-          const style = `position: fixed; width: 100%; height: 100%; top: -${this.scrollTop}px`
-          document.body.setAttribute("style", style)
+          this.bodyStyle('fixed', '100%', '100%', `-${this.scrollTop}px`)
         } else {
-          document.body.removeAttribute("style")
+          this.bodyStyle('', '', '', '')
           document.body.scrollTop = this.scrollTop
           document.documentElement.scrollTop = this.scrollTop
         }
@@ -222,7 +228,7 @@
     color: #2d8cf0;
   }
 
-  >>> .blog-menu .ivu-menu-horizontal .ivu-menu-item:not(.ivu-menu-item-active):hover {
+  >>> .blog-menu .top-right .ivu-menu-horizontal .ivu-menu-item:not(.ivu-menu-item-active):hover {
     color: inherit;
     border-bottom: 2px solid transparent;
   }
