@@ -22,7 +22,7 @@
       </div>
       <div class="top-right">
         <Menu theme="light" :active-name="activeName" mode="horizontal" @on-select="onMenuClick">
-          <MenuItem v-for="item in topItems" :key="item.url" :name="item.url" :to="item.url" :target="item.target">
+          <MenuItem v-for="item in topItems" :key="item.url" :name="item.url" :to="item.url">
             {{ item.name }}
           </MenuItem>
         </Menu>
@@ -59,9 +59,8 @@
         activeName: '',
         scrollTop: 0,
         topItems: [
-          {name: '首页', url: '/', target: '_self'},
-          {name: '关于', url: '/about', target: '_self'},
-          {name: '管理', url: '/admin', target: '_blank'}
+          {name: '首页', url: '/'},
+          {name: '关于', url: '/about'}
         ],
         menuItems: [{
           name: '学无止境', icon: 'ios-book', subItems: [// ios-happy ios-water ios-construct
@@ -75,7 +74,7 @@
           name: '交流分享', icon: 'ios-happy', subItems: [
             {name: '心情随笔', url: '/share/mood'},
             {name: '资源收藏', url: '/share/collection'},
-            {name: '留言板', url: '/share/message'},
+            {name: '留言板', url: '/share/message'}
           ]
         }]
       }
