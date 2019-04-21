@@ -14,7 +14,7 @@
 <style scoped>
   .top {
     position: fixed;
-    top: var(--menu-bar-height);
+    top: 0;
     left: var(--admin-side-width);
     z-index: 999;
     width: 100%;
@@ -27,7 +27,7 @@
 
   .left {
     position: fixed;
-    top: var(--menu-bar-height);
+    top: 0;
     left: 0;
     z-index: 999;
     width: var(--admin-side-width);

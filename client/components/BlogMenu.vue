@@ -22,7 +22,7 @@
       </div>
       <div class="top-right">
         <Menu theme="light" :active-name="activeName" mode="horizontal" @on-select="onMenuClick">
-          <MenuItem v-for="item in topItems" :key="item.url" :name="item.url" :to="item.url">
+          <MenuItem v-for="item in topItems" :key="item.url" :name="item.url" :to="item.url" :target="item.target">
             {{ item.name }}
           </MenuItem>
         </Menu>
@@ -59,36 +59,23 @@
         activeName: '',
         scrollTop: 0,
         topItems: [
-          {name: '首页', url: '/'},
-          {name: '博客', url: '/blog'},
-          {name: '关于', url: '/about'}
+          {name: '首页', url: '/', target: '_self'},
+          {name: '关于', url: '/about', target: '_self'},
+          {name: '管理', url: '/admin', target: '_blank'}
         ],
         menuItems: [{
-          name: '博客精品', icon: 'ios-book', subItems: [
+          name: '学无止境', icon: 'ios-book', subItems: [// ios-happy ios-water ios-construct
             {name: 'Android', url: '/blog/list/android'},
             {name: 'Java', url: '/blog/list/java'},
             {name: 'Html/Css/Js', url: '/blog/list/web'},
-            {name: 'Node.js', url: '/blog/list/node'}
+            {name: 'Node.js', url: '/blog/list/node'},
+            {name: '原创小说', url: '/blog/list/novel'}
           ]
         }, {
-          name: '个人简历', icon: 'ios-happy', subItems: [
-            {name: '关于雷超', url: '/about/author'},
-            {name: '关于网站', url: '/about/website'}
-          ]
-        }, {
-          name: '传说之地', icon: 'ios-water', subItems: [
-            {name: '众神齐聚', url: '/user'},
-            {name: '雷神传说', url: '/user/leichao'},
-            {name: '盘古开天', url: '/user/pangu'},
-            {name: '女娲补天', url: '/user/nvwa'},
-            {name: '阿柯刺秦', url: '/user/ake'}
-          ]
-        }, {
-          name: '后台管理', icon: 'ios-construct', subItems: [
-            {name: '管理总览', url: '/admin'},
-            {name: '博客管理', url: '/admin/blog'},
-            {name: '用户管理', url: '/admin/user'},
-            {name: '评论管理', url: '/admin/comment'}
+          name: '交流分享', icon: 'ios-happy', subItems: [
+            {name: '心情随笔', url: '/share/mood'},
+            {name: '资源收藏', url: '/share/collection'},
+            {name: '留言板', url: '/share/message'},
           ]
         }]
       }

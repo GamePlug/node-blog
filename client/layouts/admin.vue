@@ -1,25 +1,26 @@
 <template>
-  <div>
-    <BlogMenu/>
+  <BlogRefresh>
     <BlogAdmin/>
     <div class="content">
       <nuxt/>
     </div>
-  </div>
+  </BlogRefresh>
 </template>
 
 <script>
-  import BlogMenu from "../components/BlogMenu";
   import BlogAdmin from "../components/BlogAdmin";
+  import BlogRefresh from "../components/BlogRefresh";
 
   export default {
-    components: {BlogMenu, BlogAdmin},
+    components: {BlogAdmin, BlogRefresh},
   }
 </script>
 
 <style scoped>
   .content {
-    margin-top: calc(var(--menu-bar-height) + var(--admin-bar-height));
-    margin-left: var(--admin-side-width);
+    min-height: 100vh;
+    padding: var(--admin-bar-height) 0 1px var(--admin-side-width);
+    background: #f5f5f5;
+    overflow: hidden;
   }
 </style>

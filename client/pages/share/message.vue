@@ -1,13 +1,13 @@
 <template>
   <div>
-    关于首页
+    留言板
   </div>
 </template>
 
 <script>
   export default {
     head() {
-      return {title: '关于首页'}
+      return {title: '留言板'}
     }
   }
 </script>
