@@ -196,12 +196,12 @@
     height: var(--menu-bar-height);
   }
 
-  >>> .blog-menu .ivu-menu-horizontal .ivu-menu-submenu {
+  >>> .blog-menu .top-center .ivu-menu-horizontal .ivu-menu-submenu {
     padding: 0;
     margin: 0 5px;
   }
 
-  >>> .blog-menu .ivu-menu-horizontal .ivu-menu-item {
+  >>> .blog-menu .top-right .ivu-menu-horizontal .ivu-menu-item {
     padding: 0 5px;
     margin: 0 5px;
   }
