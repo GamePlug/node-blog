@@ -1,6 +1,6 @@
 <template>
   <BlogRefresh>
-    <BlogMenu/>
+    <BlogFrame/>
     <div class="content">
       <nuxt/>
     </div>
@@ -8,11 +8,11 @@
 </template>
 
 <script>
-  import BlogMenu from "../components/BlogMenu";
+  import BlogFrame from "../components/BlogFrame";
   import BlogRefresh from "../components/BlogRefresh";
 
   export default {
-    components: {BlogMenu, BlogRefresh},
+    components: {BlogFrame, BlogRefresh},
   }
 </script>
 
