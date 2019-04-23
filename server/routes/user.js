@@ -1,5 +1,5 @@
 const Router = require('koa-router')
-const models = require('../models')
+const db = require('../models')
 
 const router = new Router()
 router.prefix('/user')
@@ -16,7 +16,7 @@ router.get('/register', async ctx => {
     ctx.body = {err: 1, message: '账号或密码为空'}
     return
   }
-  const hasUser = await models.User.findOne({username})
+  const hasUser = await db.User.findOne({username})
   if (hasUser) {
     ctx.body = {err: 1, message: '该账号已被注册', user: hasUser}
     return
@@ -33,7 +33,7 @@ router.get('/login', async ctx => {
     ctx.body = {err: 1, message: '账号或密码为空'}
     return
   }
-  await models.User.findOne({username}, (err, docs) => {
+  await db.User.findOne({username}, (err, docs) => {
     if (err) {
       ctx.body = {err: 1, message: '数据库错误'}
     }
